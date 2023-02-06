@@ -1,0 +1,36 @@
+.header {
+    display: flex;
+    height: 80px;
+    box-shadow: 0 10px 10px gray;
+    padding-left: 30px;
+    font-size: 30px;
+  }
+  
+  .header>ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  } 
+  
+  .routes {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .routes__item {
+    padding: 20px 5px;
+    color: inherit;
+  }
+  .link_reset {
+    text-decoration: none;
+  }
+  .link {
+    color: inherit;
+  }
+  
+  .link:hover,
+  .link:focus {
+    color:red;
+    text-decoration: underline;
+  }
