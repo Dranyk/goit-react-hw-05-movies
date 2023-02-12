@@ -1,0 +1,20 @@
+.search {
+padding-top: 30px;
+}
+
+.searchForm {
+    margin-left: 20px;
+  }
+.searchInput {
+    padding: 10px 15px;
+    margin-right: 20px;
+  }
+  
+  .searchButton {
+    cursor: pointer;
+    padding: 8px 15px;
+    margin-bottom: 15px;
+
+  }
+  
+  
