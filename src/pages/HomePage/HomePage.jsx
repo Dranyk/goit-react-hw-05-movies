@@ -8,28 +8,24 @@ export default function HomePage() {
     const [loading, setLoading] = useState(false);
   
     useEffect(() => {
-      const fetchTrendingMovies = () => {
+      const fetchTrendingMovies = async () => {
         setLoading(true);
-        getMovies()
-          .then(results => {
-            setMovies(results);
-          })
-          .catch(error => {
+        try {
+          const data = await getMovies()
+          setMovies(data);
+        }
+          catch(error) {
             setError('Ooops. Something went wrong...');
-            console.log(error);
-          })
-          .finally(() => setLoading(false));
+          }
+        finally {setLoading(false)};
       };
       fetchTrendingMovies();
     }, []);
   
-    // const isNotFound = !loading && !movies.length;
     return (
       <>
-          {/* <SearchBar onSubmit={handleFormSubmit} /> */}
           {loading && 'Loading ...'}
-          {/* {isNotFound && <NotFoundView />} */}
-          {error && <div>{error}</div>}
+          {error && <h2>Oooops. Sorry</h2>}
           {movies && <MovieList movies={movies} />}
       </>
     );

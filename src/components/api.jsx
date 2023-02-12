@@ -11,16 +11,16 @@ const END_POINTS = {
   movieReviews: '/reviews',
 };
 
-export const getMovies = async (page = 1) => {
+export const getMovies = async () => {
   const res = await axios.get(
-    `${END_POINTS.trending}?api_key=${API_KEY}&page=${page}&language=en-US&include_adult=false`
+    `${END_POINTS.trending}?api_key=${API_KEY}&language=en-US&include_adult=false`
   );
   return res.data.results;
 };
 
-export const fetchByQuery = async (query, page = 1) => {
+export const fetchByQuery = async (query) => {
   const res = await axios.get(
-    `${END_POINTS.querySearch}?api_key=${API_KEY}&page=${page}&query=${query}&language=en-US&include_adult=false`
+    `${END_POINTS.querySearch}?api_key=${API_KEY}&query=${query}&language=en-US&include_adult=false`
   );
 
   return res.data.results;
@@ -42,9 +42,9 @@ export const fetchMoviesCredits = async id => {
   return res.data.cast;
 };
 
-export const fetchMoviesReviews = async (id, page = 1) => {
+export const fetchMoviesReviews = async (id) => {
   const res = await axios.get(
-    `/movie/${id}${END_POINTS.movieReviews}?api_key=${API_KEY}&language=en-US&page=${page}`
+    `/movie/${id}${END_POINTS.movieReviews}?api_key=${API_KEY}&language=en-US`
   );
 
   return res.data.results;

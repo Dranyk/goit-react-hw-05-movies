@@ -29,8 +29,8 @@ const Cast = () => {
       {loading && 'Loading...'}
       {error && <div>{error}</div>}
       <ul>
-        {cast.map(({ profile_path, name, character, id }) => (
-        <li  key={id}>
+        {cast.map(({ profile_path, name, character,  cast_id }) => (
+        <li  key={cast_id}>
           <img src={`https://image.tmdb.org/t/p/w300${profile_path}`} alt={name} />
           <p>{name}</p>
           <p>Character: {character}</p>
