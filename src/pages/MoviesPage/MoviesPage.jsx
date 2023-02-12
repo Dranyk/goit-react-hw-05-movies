@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import css from './MoviesPage.module.css';
 import { fetchByQuery } from 'components/api';
 import MovieList from 'components/MoviesList/MoviesList';
+import Loader from 'components/Loader/Loader';
 
 const MoviesPage = () => {
   const [search, setSearch] = useState('');
@@ -63,7 +64,7 @@ const MoviesPage = () => {
           </button>
         </form>
       </div>
-      {loading && 'Loading ...'}
+      {loading && <Loader />}
       {error && <div>{error}</div>}
       {movies.length > 0 && <MovieList movies={movies} />}
     </>
