@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMoviesReviews } from 'components/api';
 
+import Notification from 'components/Notification/Notification';
+
 const Reviews = () => {
   const { movieId } = useParams();
 
@@ -22,7 +24,11 @@ const Reviews = () => {
 
   return (
     <>
-      {error && <div>{error}</div>}
+      {error && (
+        <h2>
+          <Notification message="Oooooops. Sorry, but something went wrong" />
+        </h2>
+      )}
       <ul>
         {reviews.map(review => {
           return (

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { getMovies } from 'components/api';
 import MovieList from 'components/MoviesList/MoviesList';
 import Loader from 'components/Loader/Loader';
+import Notification from 'components/Notification/Notification';
 
 export default function HomePage() {
   const [movies, setMovies] = useState([]);
@@ -26,7 +27,7 @@ export default function HomePage() {
   return (
     <>
       {loading && <Loader />}
-      {error && <h2>Oooops. Sorry</h2>}
+      {error && <h2> <Notification message="Oooooops. Sorry, but something went wrong" /></h2>}
       {movies && <MovieList movies={movies} />}
     </>
   );

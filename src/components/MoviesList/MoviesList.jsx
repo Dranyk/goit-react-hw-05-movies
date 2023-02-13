@@ -1,31 +1,38 @@
 import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
 
+import Notification from 'components/Notification/Notification';
+import Loader from 'components/Loader/Loader';
 
-const MovieList = ({ movies }) => {
+
+const MovieList = ({ movies, loading, error }) => {
   const location = useLocation()
+
+  const elements = movies.map(({ id, title, name }) => (
+    <li key={id}>
+      <Link state={{ from: location }} to={`/movies/${id}`}>
+        {title || name}
+      </Link>
+    </li>
+  ));
   return (
     <>
-      <ul>
-        {movies.map(({ id, title, name }) => (
-          <li key={id}>
-            <Link to={`/movies/${id}`} state={{ from: location }}>
-              <h3>{title || name}</h3>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <div>
+      <ul>{elements}</ul>
+      {loading && <Loader />}
+      {error && <h2> <Notification message="Oooooops. Sorry, but something went wrong" /></h2>}
+    </div>
     </>
   );
 };
 
+export default MovieList;
+
 MovieList.propTypes = {
-  // prevLocation: PropTypes.object.isRequired,
   movies: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      original_title: PropTypes.string.isRequired,
-    })
+      title: PropTypes.string.isRequired,
+    }).isRequired
   ).isRequired,
 };
-export default MovieList;

@@ -5,6 +5,7 @@ import css from './MoviesPage.module.css';
 import { fetchByQuery } from 'components/api';
 import MovieList from 'components/MoviesList/MoviesList';
 import Loader from 'components/Loader/Loader';
+import Notification from 'components/Notification/Notification';
 
 const MoviesPage = () => {
   const [search, setSearch] = useState('');
@@ -13,8 +14,13 @@ const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams('');
 
-  const handleQuerySearch = e => {
-    setSearch(e.target.value.toLowerCase());
+  // const handleQuerySearch = e => {
+  //   setSearch(e.target.value.toLowerCase());
+  // };
+
+  const handleQuerySearch = ({ target }) => {
+    const { value } = target;
+    setSearch(value);
   };
 
   const handleSubmit = e => {
@@ -47,6 +53,12 @@ const MoviesPage = () => {
 
   return (
     <>
+      {loading && <Loader />}
+      {error && (
+        <h2>
+          <Notification message="Oooooops. Sorry, but something went wrong" />
+        </h2>
+      )}
       <div className={css.search}>
         <form onSubmit={handleSubmit} className={css.searchForm}>
           <input
@@ -64,8 +76,6 @@ const MoviesPage = () => {
           </button>
         </form>
       </div>
-      {loading && <Loader />}
-      {error && <div>{error}</div>}
       {movies.length > 0 && <MovieList movies={movies} />}
     </>
   );

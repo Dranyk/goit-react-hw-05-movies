@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { fetchMoviesDetails } from 'components/api';
+import Loader from 'components/Loader/Loader';
+import Notification from 'components/Notification/Notification';
 
 export default function MovieDetails() {
   const [movie, setMovie] = useState(null);
@@ -29,7 +31,7 @@ export default function MovieDetails() {
         const data = await fetchMoviesDetails(movieId);
         setMovie(data);
       } catch (error) {
-        setError('Ooops. Something went wrong...');
+        setError(error);
       } finally {
         setLoading(false);
       }
@@ -44,12 +46,22 @@ export default function MovieDetails() {
       </button>
 
       {movie && <p>{movie.title}</p>}
-      {loading && 'Loading ...'}
-      {error && <div>{error}</div>}
+      {loading && <Loader />}
+      {error && (
+        <h2>
+          {' '}
+          <Notification message="Oooooops. Sorry, but something went wrong" />
+        </h2>
+      )}
       {movie && (
         <div>
           <img
-            src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
+            width="300"
+            src={
+              movie.poster_path
+                ? `https://image.tmdb.org/t/p/w200/${movie.poster_path}`
+                : 'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg'
+            }
             alt={movie.title}
           />
           <h3>{movie.title}</h3>
@@ -65,17 +77,17 @@ export default function MovieDetails() {
       <div>
         <h2>Additional Information</h2>
         <NavLink
-          to='reviews'
+          to="reviews"
           style={({ isActive }) => (isActive ? activeClassName : undefined)}
-          state={{back}}
+          state={{ back }}
         >
           <p className={css.reviews}>Reviews</p>
         </NavLink>
 
         <NavLink
-          to='cast'
+          to="cast"
           style={({ isActive }) => (isActive ? activeClassName : undefined)}
-          state={{back}}
+          state={{ back }}
         >
           <p className={css.cast}>Cast</p>
         </NavLink>
