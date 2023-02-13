@@ -14,13 +14,8 @@ const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams('');
 
-  // const handleQuerySearch = e => {
-  //   setSearch(e.target.value.toLowerCase());
-  // };
-
-  const handleQuerySearch = ({ target }) => {
-    const { value } = target;
-    setSearch(value);
+  const handleQuerySearch = e => {
+    setSearch(e.target.value.toLowerCase());
   };
 
   const handleSubmit = e => {
