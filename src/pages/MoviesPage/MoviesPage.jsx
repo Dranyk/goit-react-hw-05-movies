@@ -27,7 +27,7 @@ const MoviesPage = () => {
     setSearch('');
   };
 
-  const movieName = searchParams.get('query');
+  const movieName = searchParams.get('search');
 
   useEffect(() => {
     const fetchMovie = async () => {

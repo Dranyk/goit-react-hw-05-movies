@@ -19,11 +19,11 @@ export const getMovies = async () => {
 };
 
 export const fetchByQuery = async (query) => {
-  return await axios.get(
+  const res = await axios.get(
     `${END_POINTS.querySearch}?api_key=${API_KEY}&query=${query}&language=en-US`
   );
 
-  // return res.data.results;
+  return res.data.results;
 };
 
 export const fetchMoviesDetails = async id => {
