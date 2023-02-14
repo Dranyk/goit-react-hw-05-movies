@@ -79,7 +79,7 @@ export default function MovieDetails() {
         <NavLink
           to="reviews"
           style={({ isActive }) => (isActive ? activeClassName : undefined)}
-          state={{ back }}
+          state={{ from: back }}
         >
           <p className={css.reviews}>Reviews</p>
         </NavLink>
@@ -87,7 +87,7 @@ export default function MovieDetails() {
         <NavLink
           to="cast"
           style={({ isActive }) => (isActive ? activeClassName : undefined)}
-          state={{ back }}
+          state={{ from: back }}
         >
           <p className={css.cast}>Cast</p>
         </NavLink>
